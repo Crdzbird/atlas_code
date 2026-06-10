@@ -1,8 +1,9 @@
 # atlas_code
 
 A federated Flutter plugin providing country codes and metadata for every
-ISO 3166-1 country and territory — alpha-2 / alpha-3 / numeric codes, dial
-codes, flag emojis, currencies and regions — plus OS-localized country names.
+ISO 3166-1 country and territory: alpha-2, alpha-3 and numeric codes, dial
+codes, flag emojis, currencies, capitals, borders and regions, plus
+OS-localized country names.
 
 A modern successor to the abandoned
 [`country_codes`](https://pub.dev/packages/country_codes) package.
@@ -12,17 +13,20 @@ See [`atlas_code/README.md`](atlas_code/README.md) for usage.
 
 | Package | Role |
 | --- | --- |
-| [`atlas_code`](atlas_code) | App-facing API: `Countries`, `Country`, `AtlasCode`, `DialCodeFormatter` and the bundled dataset |
+| [`atlas_code`](atlas_code) | App facing API: `Countries`, `Country`, `CountryCode`, `AtlasCode`, `DialCodeFormatter` and the bundled dataset |
 | [`atlas_code_platform_interface`](atlas_code_platform_interface) | The shared contract platform implementations fulfill |
-| [`atlas_code_android`](atlas_code_android) | Android — localized names via `java.util.Locale` (Pigeon + Kotlin) |
-| [`atlas_code_ios`](atlas_code_ios) | iOS — localized names via `Locale.localizedString(forRegionCode:)` (Pigeon + Swift) |
-| [`atlas_code_macos`](atlas_code_macos) | macOS — same as iOS |
-| [`atlas_code_web`](atlas_code_web) | Web — localized names via `Intl.DisplayNames` |
-| [`atlas_code_windows`](atlas_code_windows) | Windows — Dart-only; bundled English fallback |
-| [`atlas_code_linux`](atlas_code_linux) | Linux — Dart-only; bundled English fallback |
+| [`atlas_code_android`](atlas_code_android) | Android, localized names via `java.util.Locale` (Pigeon and Kotlin) |
+| [`atlas_code_ios`](atlas_code_ios) | iOS, localized names via `Locale.localizedString(forRegionCode:)` (Pigeon and Swift) |
+| [`atlas_code_macos`](atlas_code_macos) | macOS, same approach as iOS |
+| [`atlas_code_web`](atlas_code_web) | Web, localized names via `Intl.DisplayNames` |
+| [`atlas_code_windows`](atlas_code_windows) | Windows, Dart only with bundled English fallback |
+| [`atlas_code_linux`](atlas_code_linux) | Linux, Dart only with bundled English fallback |
 
-Only the *localized country names* feature touches platform code; all other
-data is pure-Dart `const` and identical on every platform.
+Only the localized country names feature touches platform code; all other
+data is pure Dart `const` and identical on every platform.
+
+The repository is a pub workspace: run `flutter pub get` once at the root
+and every package resolves together.
 
 ## Development
 
@@ -41,12 +45,22 @@ done
 (cd atlas_code_web && flutter test --platform chrome)
 ```
 
-## Integration tests 🧪
+## Publishing
+
+Packages must be published in dependency order:
+
+1. `atlas_code_platform_interface`
+2. The platform implementations (`atlas_code_android`, `atlas_code_ios`,
+   `atlas_code_macos`, `atlas_code_web`, `atlas_code_windows`,
+   `atlas_code_linux`)
+3. `atlas_code`
+
+## Integration tests
 
 Integration tests live in the `atlas_code/example` app:
 
 ```sh
 cd atlas_code/example
-flutter test integration_test   # on a connected device / simulator
-fluttium test flows/search_country.yaml   # requires fluttium_cli
+flutter test integration_test                 # on a connected device or simulator
+fluttium test flows/search_country.yaml       # requires fluttium_cli
 ```
