@@ -1,0 +1,46 @@
+name: atlas_code
+description: >-
+  Country codes and metadata for every ISO 3166-1 country: alpha-2/alpha-3/
+  numeric codes, dial codes, flag emojis, currencies, regions, plus
+  OS-localized country names via a federated platform implementation.
+version: 0.1.0
+repository: https://github.com/Crdzbird/atlas_code
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+resolution: workspace
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        default_package: atlas_code_android
+      ios:
+        default_package: atlas_code_ios
+      linux:
+        default_package: atlas_code_linux
+      macos:
+        default_package: atlas_code_macos
+      web:
+        default_package: atlas_code_web
+      windows:
+        default_package: atlas_code_windows
+
+dependencies:
+  atlas_code_android: ^0.1.0
+  atlas_code_ios: ^0.1.0
+  atlas_code_linux: ^0.1.0
+  atlas_code_macos: ^0.1.0
+  atlas_code_platform_interface: ^0.1.0
+  atlas_code_web: ^0.1.0
+  atlas_code_windows: ^0.1.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  plugin_platform_interface: ^2.1.8
+  very_good_analysis: ^10.2.0

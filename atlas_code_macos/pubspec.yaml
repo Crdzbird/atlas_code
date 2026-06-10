@@ -1,0 +1,30 @@
+name: atlas_code_macos
+description: MacOS implementation of the atlas_code plugin
+version: 0.1.0
+repository: https://github.com/Crdzbird/atlas_code
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+resolution: workspace
+
+flutter:
+  plugin:
+    implements: atlas_code
+    platforms:
+      macos:
+        pluginClass: AtlasCodePlugin
+        dartPluginClass: AtlasCodeMacOS
+
+dependencies:
+  atlas_code_platform_interface: ^0.1.0
+  flutter:
+    sdk: flutter
+  meta: ^1.16.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.5
+  pigeon: ^26.3.4
+  very_good_analysis: ^10.2.0

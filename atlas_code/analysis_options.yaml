@@ -1,0 +1,9 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    # The models are deeply immutable (final classes, all-final fields,
+    # const constructors) and override ==/hashCode by ISO code. This rule
+    # only recognizes immutability via the @immutable annotation, which the
+    # package intentionally avoids to stay free of the meta dependency.
+    avoid_equals_and_hash_code_on_mutable_classes: false

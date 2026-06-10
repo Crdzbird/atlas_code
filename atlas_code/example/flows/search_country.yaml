@@ -1,0 +1,5 @@
+description: Search for a country and verify its code and dial code show up
+---
+- pressOn: "Search name, code or dial code"
+- writeText: "portugal"
+- expectVisible: "PT · +351"

@@ -1,0 +1,28 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+coverage/
+doc/api/
+pubspec_overrides.yaml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Platform ephemera
+**/ios/Pods/
+**/macos/Pods/
+**/ios/.symlinks/
+**/macos/.symlinks/
+**/.plugin_symlinks/
+**/android/.gradle/
+**/android/local.properties
+**/ephemeral/
+**/.swiftpm/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+
+# macOS
+.DS_Store

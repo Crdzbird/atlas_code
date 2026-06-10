@@ -1,0 +1,118 @@
+/// Diacritic folding for search.
+extension DiacriticFoldingX on String {
+  /// This string with Latin diacritics and ligatures folded to their ASCII
+  /// base letters, lowercased — so that `España` matches a search for
+  /// `espana`.
+  ///
+  /// Covers Latin-1 Supplement and the Latin Extended characters that occur
+  /// in country names across CLDR locales. Non-Latin scripts pass through
+  /// unchanged (only lowercased), which keeps exact-text search working for
+  /// them.
+  String get foldedDiacritics {
+    final buffer = StringBuffer();
+    for (final rune in toLowerCase().runes) {
+      final char = String.fromCharCode(rune);
+      buffer.write(_folding[char] ?? char);
+    }
+    return buffer.toString();
+  }
+}
+
+const Map<String, String> _folding = {
+  'à': 'a',
+  'á': 'a',
+  'â': 'a',
+  'ã': 'a',
+  'ä': 'a',
+  'å': 'a',
+  'ā': 'a',
+  'ă': 'a',
+  'ą': 'a',
+  'æ': 'ae',
+  'ç': 'c',
+  'ć': 'c',
+  'č': 'c',
+  'ĉ': 'c',
+  'ċ': 'c',
+  'ď': 'd',
+  'đ': 'd',
+  'ð': 'd',
+  'è': 'e',
+  'é': 'e',
+  'ê': 'e',
+  'ë': 'e',
+  'ē': 'e',
+  'ĕ': 'e',
+  'ė': 'e',
+  'ę': 'e',
+  'ě': 'e',
+  'ĝ': 'g',
+  'ğ': 'g',
+  'ġ': 'g',
+  'ģ': 'g',
+  'ĥ': 'h',
+  'ħ': 'h',
+  'ì': 'i',
+  'í': 'i',
+  'î': 'i',
+  'ï': 'i',
+  'ĩ': 'i',
+  'ī': 'i',
+  'ĭ': 'i',
+  'į': 'i',
+  'ı': 'i',
+  'ĵ': 'j',
+  'ķ': 'k',
+  'ĺ': 'l',
+  'ļ': 'l',
+  'ľ': 'l',
+  'ŀ': 'l',
+  'ł': 'l',
+  'ñ': 'n',
+  'ń': 'n',
+  'ņ': 'n',
+  'ň': 'n',
+  'ò': 'o',
+  'ó': 'o',
+  'ô': 'o',
+  'õ': 'o',
+  'ö': 'o',
+  'ø': 'o',
+  'ō': 'o',
+  'ŏ': 'o',
+  'ő': 'o',
+  'œ': 'oe',
+  'ŕ': 'r',
+  'ŗ': 'r',
+  'ř': 'r',
+  'ś': 's',
+  'ŝ': 's',
+  'ş': 's',
+  'š': 's',
+  'ș': 's',
+  'ß': 'ss',
+  'ţ': 't',
+  'ť': 't',
+  'ț': 't',
+  'ŧ': 't',
+  'þ': 'th',
+  'ù': 'u',
+  'ú': 'u',
+  'û': 'u',
+  'ü': 'u',
+  'ũ': 'u',
+  'ū': 'u',
+  'ŭ': 'u',
+  'ů': 'u',
+  'ű': 'u',
+  'ų': 'u',
+  'ŵ': 'w',
+  'ý': 'y',
+  'ÿ': 'y',
+  'ŷ': 'y',
+  'ź': 'z',
+  'ż': 'z',
+  'ž': 'z',
+  '’': "'",
+  '‘': "'",
+};

@@ -1,0 +1,17 @@
+name: atlas_code_workspace
+description: Workspace for the atlas_code federated plugin packages.
+publish_to: none
+
+environment:
+  sdk: ^3.12.0
+
+workspace:
+  - atlas_code
+  - atlas_code/example
+  - atlas_code_android
+  - atlas_code_ios
+  - atlas_code_linux
+  - atlas_code_macos
+  - atlas_code_platform_interface
+  - atlas_code_web
+  - atlas_code_windows

@@ -1,0 +1,26 @@
+name: atlas_code_windows
+description: Windows implementation of the atlas_code plugin
+version: 0.1.0
+repository: https://github.com/Crdzbird/atlas_code
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+resolution: workspace
+
+flutter:
+  plugin:
+    implements: atlas_code
+    platforms:
+      windows:
+        dartPluginClass: AtlasCodeWindows
+
+dependencies:
+  atlas_code_platform_interface: ^0.1.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^10.2.0
