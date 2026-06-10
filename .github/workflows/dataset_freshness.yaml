@@ -1,0 +1,49 @@
+name: dataset_freshness
+
+on:
+  schedule:
+    # First day of every month at 06:00 UTC.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Resolve workspace
+        run: flutter pub get
+
+      - name: Regenerate dataset from upstream
+        working-directory: atlas_code
+        run: dart run tool/generate_countries.dart
+
+      - name: Verify regenerated data against the test suite
+        working-directory: atlas_code
+        run: flutter test
+
+      - name: Open a pull request when the data changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Update bundled country dataset from upstream
+          title: Update bundled country dataset
+          branch: chore/dataset-refresh
+          delete-branch: true
+          body: |
+            Automated monthly regeneration of the bundled dataset from
+            [mledoze/countries](https://github.com/mledoze/countries).
+
+            The full test suite (including the data integrity tests) ran
+            against the regenerated files before this PR was opened.
+            Review the diff for unexpected geopolitical or dial code
+            changes before merging.
