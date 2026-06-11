@@ -33,7 +33,7 @@ jobs:
         run: flutter test
 
       - name: Open a pull request when the data changed
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: Update bundled country dataset from upstream
           title: Update bundled country dataset
